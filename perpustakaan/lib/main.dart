@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'loading_page.dart';
+import 'package:perpustakaan/layout/loading_page.dart';
 
 void main() {
   runApp(const Perpustakaan());
@@ -17,6 +17,3 @@ class Perpustakaan extends StatelessWidget {
     );
   }
 }
-
-
-

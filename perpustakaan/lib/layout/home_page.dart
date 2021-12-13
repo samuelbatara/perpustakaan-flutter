@@ -1,6 +1,8 @@
-import 'dart:ui';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:flutter/material.dart';
+import 'package:perpustakaan/models/buku.dart';
+import 'package:perpustakaan/server_handler.dart';
+import 'package:perpustakaan/widgets/home_buku_item.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -10,6 +12,11 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  Future<List<Buku>> getBuku() async {
+    List<Buku> buku = await ServerHandler().listBuku();
+    return buku;
+  }
+
   @override
   Widget build(BuildContext context) {
     var screenwidth = MediaQuery.of(context).size.width;
@@ -39,6 +46,36 @@ class _HomePageState extends State<HomePage> {
         body: SingleChildScrollView(
             child: Column(
           children: <Widget>[
+            Padding(
+              padding: EdgeInsets.fromLTRB(
+                  screenwidth * 0.03,
+                  screenheight * 0.015,
+                  screenwidth * 0.025,
+                  screenheight * 0.015),
+              child: SizedBox(
+                height: screenheight * 0.050,
+                width: screenwidth * 0.85,
+                child: TextFormField(
+                  decoration: InputDecoration(
+                    filled: true,
+                    fillColor: const Color(0xFFF3F4F6),
+                    contentPadding: const EdgeInsets.only(left: 10),
+                    border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(15),
+                        borderSide: BorderSide.none),
+                    hintText: 'Masukkan nama buku',
+                    hintStyle: GoogleFonts.ubuntu(
+                        color: const Color(0xFF9CA3AF),
+                        fontSize: 13,
+                        fontWeight: FontWeight.w500),
+                    suffixIcon: const Icon(
+                      Icons.search,
+                      color: Color(0xFF9CA3AF),
+                    ),
+                  ),
+                ),
+              ),
+            ),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
@@ -77,25 +114,21 @@ class _HomePageState extends State<HomePage> {
             ),
             SizedBox(
               height: screenheight * 0.35,
-              child: ListView(
-                scrollDirection: Axis.horizontal,
-                children: <Widget>[
-                  Buku(
-                    context: context,
-                    image: "lib/assets/buku_Bulan.png",
-                    title: "Mengenal Anak Hewan",
-                    author: "Valerie Willame"),
-                  Buku(
-                    context: context,
-                    image: "lib/assets/buku_FilosofiTeras.png",
-                    title: "Filosofi Teras",
-                    author: "Affan Noviananda"),
-                  Buku(
-                    context: context,
-                    image: "lib/assets/buku_RichDadPoorDad.png",
-                    title: "Rich Dad And Por Dad",
-                    author: "Raha Baiq"),
-                ],
+              child: FutureBuilder<List<Buku>>(
+                future: getBuku(),
+                builder:
+                    (BuildContext context, AsyncSnapshot<List<Buku>> snapshot) {
+                  if (snapshot.hasData) {
+                    return ListView(
+                      scrollDirection: Axis.horizontal,
+                      children: snapshot.data!
+                          .map((e) => HomeBukuItem(buku: e))
+                          .toList(),
+                    );
+                  } else {
+                    return const CircularProgressIndicator();
+                  }
+                },
               ),
             ),
             Row(
@@ -139,21 +172,21 @@ class _HomePageState extends State<HomePage> {
               child: ListView(
                 scrollDirection: Axis.horizontal,
                 children: <Widget>[
-                  Buku(
-                    context: context,
-                    image: "lib/assets/buku_Bulan.png",
-                    title: "Mengenal Anak Hewan",
-                    author: "Valerie Willame"),
-                  Buku(
-                    context: context,
-                    image: "lib/assets/buku_FilosofiTeras.png",
-                    title: "Filosofi Teras",
-                    author: "Affan Noviananda"),
-                  Buku(
-                    context: context,
-                    image: "lib/assets/buku_RichDadPoorDad.png",
-                    title: "Rich Dad And Por Dad",
-                    author: "Raha Baiq"),
+                  kategorilist(
+                      context: context,
+                      image: "lib/assets/buku_Bulan.png",
+                      title: "Mengenal Anak Hewan",
+                      author: "Valerie Willame"),
+                  kategorilist(
+                      context: context,
+                      image: "lib/assets/buku_FilosofiTeras.png",
+                      title: "Filosofi Teras",
+                      author: "Affan Noviananda"),
+                  kategorilist(
+                      context: context,
+                      image: "lib/assets/buku_RichDadPoorDad.png",
+                      title: "Rich Dad And Por Dad",
+                      author: "Raha Baiq"),
                 ],
               ),
             )
@@ -163,7 +196,7 @@ class _HomePageState extends State<HomePage> {
     );
   }
 
-  Widget Buku({required BuildContext context, image, title, author}) {
+  Widget kategorilist({required BuildContext context, image, title, author}) {
     var screenwidth = MediaQuery.of(context).size.width;
     var screenheight = MediaQuery.of(context).size.height;
     return Padding(
