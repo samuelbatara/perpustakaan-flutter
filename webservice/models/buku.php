@@ -56,6 +56,18 @@ class Buku
 
         return $database->fetch_array($result);
     }
+
+    public function get_buku_per_kategori()
+    {
+        global $database;
+
+        $this->idkategori = trim(htmlspecialchars(strip_tags($this->idkategori)));
+
+        $sql = "SELECT * FROM $this->table WHERE idkategori = '" . $database->escape_value($this->idkategori) . "'";
+        $result = $database->query($sql);
+
+        return $database->fetch_array($result);
+    }
 }
 
 $buku = new Buku();
