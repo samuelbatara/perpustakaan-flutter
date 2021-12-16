@@ -14,7 +14,7 @@ class HomeBukuItem extends StatelessWidget {
       onTap: () {},
       child: Padding(
         padding:
-            EdgeInsets.fromLTRB(screenwidth * 0.03, 0, 0, screenheight * 0.015),
+            EdgeInsets.fromLTRB(screenwidth * 0.04, 0, 0, screenheight * 0.015),
         child: SizedBox(
           width: screenwidth / 1 / 3,
           child: Card(
