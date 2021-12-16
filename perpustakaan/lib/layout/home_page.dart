@@ -1,5 +1,6 @@
 import 'package:google_fonts/google_fonts.dart';
 import 'package:flutter/material.dart';
+import 'package:perpustakaan/layout/listbook_page.dart';
 import 'package:perpustakaan/models/buku.dart';
 import 'package:perpustakaan/server_handler.dart';
 import 'package:perpustakaan/widgets/home_buku_item.dart';
@@ -99,7 +100,10 @@ class _HomePageState extends State<HomePage> {
                     padding: EdgeInsets.fromLTRB(screenwidth * 0.025, 0,
                         screenwidth * 0.025, screenheight * 0.01),
                     child: InkWell(
-                      onTap: () {},
+                      onTap: () {
+                        Navigator.of(context).push(MaterialPageRoute(
+                          builder: (context) => ListBook()));
+                      },
                       child: Text(
                         "SEE ALL",
                         style: GoogleFonts.ubuntu(
