@@ -33,20 +33,18 @@ class _HomePageState extends State<HomePage> {
       child: Scaffold(
         backgroundColor: Colors.white,
         appBar: AppBar(
+          iconTheme: IconThemeData(color: Colors.blue),
           backgroundColor: Colors.transparent,
           elevation: 0,
           title: Center(
-            child: Container(
-              padding: EdgeInsets.only(top: screenheight * 0.02),
-              child: Text(
-                'Catalog',
-                style: GoogleFonts.ubuntu(
-                  textStyle: TextStyle(
-                      color: Colors.blue,
-                      letterSpacing: .5,
-                      fontSize: screenheight * 0.03,
-                      fontWeight: FontWeight.w500),
-                ),
+            child: Text(
+              'Catalog',
+              style: GoogleFonts.ubuntu(
+                textStyle: TextStyle(
+                    color: Colors.blue,
+                    letterSpacing: .5,
+                    fontSize: screenheight * 0.03,
+                    fontWeight: FontWeight.w500),
               ),
             ),
           ),
@@ -183,6 +181,93 @@ class _HomePageState extends State<HomePage> {
             ],
           ),
         )),
+        drawer: Theme(
+          data: Theme.of(context).copyWith(
+            canvasColor:
+                Colors.blue, //This will change the drawer background to blue.
+            //other styles
+          ),
+          child: Drawer(
+            // Add a ListView to the drawer. This ensures the user can scroll
+            // through the options in the drawer if there isn't enough vertical
+            // space to fit everything.
+            child: ListView(
+              // Important: Remove any padding from the ListView.
+              padding: EdgeInsets.zero,
+              children: [
+                Container(
+                    padding: EdgeInsets.fromLTRB(20, 20, 20, 20),
+                    child: Text('Menu',
+                        style: GoogleFonts.ubuntu(
+                          textStyle: TextStyle(
+                              color: Colors.white,
+                              letterSpacing: .2,
+                              fontSize: 19,
+                              fontWeight: FontWeight.w800),
+                        ))),
+                ListTile(
+                  leading: Icon(Icons.account_circle),
+                  title: Text('Nama',
+                      style: GoogleFonts.ubuntu(
+                        textStyle: TextStyle(
+                            color: Colors.white,
+                            letterSpacing: .2,
+                            fontSize: 18,
+                            fontWeight: FontWeight.w400),
+                      )),
+                  onTap: () {
+                    // Update the state of the app
+                    // ...
+                    // Then close the drawer
+                    Navigator.pop(context);
+                  },
+                ),
+                ListTile(
+                  leading: Icon(Icons.badge),
+                  title: Text('NIM',
+                      style: GoogleFonts.ubuntu(
+                        textStyle: TextStyle(
+                            color: Colors.white,
+                            letterSpacing: .2,
+                            fontSize: 18,
+                            fontWeight: FontWeight.w400),
+                      )),
+                  onTap: () {
+                    // Update the state of the app
+                    // ...
+                    // Then close the drawer
+                    Navigator.pop(context);
+                  },
+                ),
+                Column(
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  crossAxisAlignment: CrossAxisAlignment.end,
+                  children: [
+                    Container(
+                      child: ListTile(
+                        leading: Icon(Icons.logout),
+                        title: Text('Logout',
+                            style: GoogleFonts.ubuntu(
+                              textStyle: TextStyle(
+                                  color: Colors.white,
+                                  letterSpacing: .2,
+                                  fontSize: 18,
+                                  fontWeight: FontWeight.w400),
+                            )),
+                        onTap: () {
+                          // Update the state of the app
+                          // ...
+                          // Then close the drawer
+                          Navigator.pop(context);
+                        },
+                      ),
+                    )
+                  ],
+                ),
+              ],
+            ),
+          ),
+        ),
       ),
     );
   }
