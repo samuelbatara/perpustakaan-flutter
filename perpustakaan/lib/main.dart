@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:perpustakaan/layout/loading_page.dart';
 
+// ini gading nyoba
 void main() {
   runApp(const Perpustakaan());
 }
