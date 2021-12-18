@@ -1,3 +1,7 @@
+// To parse this JSON data, do
+//
+//     final kategoriResp = kategoriRespFromJson(jsonString);
+
 import 'dart:convert';
 
 KategoriResp kategoriRespFromJson(String str) =>
@@ -30,18 +34,22 @@ class Kategori {
   Kategori({
     required this.idkategori,
     required this.nama,
+    required this.fileGambar,
   });
 
   String idkategori;
   String nama;
+  String fileGambar;
 
   factory Kategori.fromJson(Map<String, dynamic> json) => Kategori(
         idkategori: json["idkategori"] ?? "",
         nama: json["nama"] ?? "",
+        fileGambar: json["file_gambar"] ?? "",
       );
 
   Map<String, dynamic> toJson() => {
         "idkategori": idkategori,
         "nama": nama,
+        "file_gambar": fileGambar,
       };
 }

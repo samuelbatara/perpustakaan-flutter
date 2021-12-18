@@ -35,18 +35,4 @@ class ServerHandler {
       rethrow;
     }
   }
-
-  Future<List<Buku>> getBukuPerKat(int id) async {
-    try {
-      http.Response response =
-          await http.get(Uri.parse('$_baseUrl/buku/bukuperkat?idkategori=$id'));
-
-      BookResponse responseJson = bookResponseFromJson(response.body);
-
-      return responseJson.buku;
-    } catch (e) {
-      print('Server Handler : error : ' + e.toString());
-      rethrow;
-    }
-  }
 }
