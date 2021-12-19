@@ -25,7 +25,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $a = $anggota->login();
     if (gettype($a) === 'array') {
         http_response_code(200);
-        echo json_encode(array('success' => 1, 'message' => 'Login Successful!', 'Anggota' => $a));
+        echo json_encode(array('success' => 1, 'message' => 'Login Successful!', 'token' => $anggota->email, 'Anggota' => $a));
     } else {
         http_response_code(402);
         echo json_encode(array('success' => 0, 'message' => $a));
