@@ -36,11 +36,12 @@ class _ListBookState extends State<ListBook> {
             ),
           ),
           elevation: 0,
+          centerTitle: true,
           backgroundColor: Colors.transparent,
           title: Title(
             color: Colors.blue,
             child: Text(
-              'List Buku',
+              'Catalog Buku',
               style: GoogleFonts.ubuntu(
                 textStyle: TextStyle(
                     color: Colors.blue,
