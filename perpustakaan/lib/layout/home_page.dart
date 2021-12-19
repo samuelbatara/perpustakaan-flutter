@@ -36,16 +36,15 @@ class _HomePageState extends State<HomePage> {
           iconTheme: IconThemeData(color: Colors.blue),
           backgroundColor: Colors.transparent,
           elevation: 0,
-          title: Center(
-            child: Text(
-              'Catalog',
-              style: GoogleFonts.ubuntu(
-                textStyle: TextStyle(
-                    color: Colors.blue,
-                    letterSpacing: .5,
-                    fontSize: screenheight * 0.03,
-                    fontWeight: FontWeight.w500),
-              ),
+          centerTitle: true,
+          title: Text(
+            'Perpustakaan Artji',
+            style: GoogleFonts.ubuntu(
+              textStyle: TextStyle(
+                  color: Colors.blue,
+                  letterSpacing: .5,
+                  fontSize: screenheight * 0.025,
+                  fontWeight: FontWeight.w500),
             ),
           ),
         ),
