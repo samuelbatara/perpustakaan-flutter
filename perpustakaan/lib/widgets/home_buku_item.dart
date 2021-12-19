@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:perpustakaan/layout/detail_page.dart';
 import 'package:perpustakaan/models/buku.dart';
 
 class HomeBukuItem extends StatelessWidget {
@@ -11,7 +12,10 @@ class HomeBukuItem extends StatelessWidget {
     var screenwidth = MediaQuery.of(context).size.width;
     var screenheight = MediaQuery.of(context).size.height;
     return GestureDetector(
-      onTap: () {},
+      onTap: () {
+        Navigator.of(context).push(MaterialPageRoute(
+                    builder: (context) => DetailBuku()));
+      },
       child: Padding(
         padding:
             EdgeInsets.fromLTRB(screenwidth * 0.04, 0, 0, screenheight * 0.015),
