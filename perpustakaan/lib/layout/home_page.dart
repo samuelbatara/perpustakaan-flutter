@@ -1,11 +1,13 @@
 import 'package:google_fonts/google_fonts.dart';
 import 'package:flutter/material.dart';
 import 'package:perpustakaan/layout/listbook_page.dart';
+import 'package:perpustakaan/layout/login_page.dart';
 import 'package:perpustakaan/models/buku.dart';
 import 'package:perpustakaan/models/kategori.dart';
 import 'package:perpustakaan/server_handler.dart';
 import 'package:perpustakaan/widgets/home_buku_item.dart';
 import 'package:perpustakaan/widgets/home_kategori_item.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -33,7 +35,7 @@ class _HomePageState extends State<HomePage> {
       child: Scaffold(
         backgroundColor: Colors.white,
         appBar: AppBar(
-          iconTheme: IconThemeData(color: Colors.blue),
+          iconTheme: const IconThemeData(color: Colors.blue),
           backgroundColor: Colors.transparent,
           elevation: 0,
           centerTitle: true,
@@ -195,20 +197,20 @@ class _HomePageState extends State<HomePage> {
               padding: EdgeInsets.zero,
               children: [
                 Container(
-                    padding: EdgeInsets.fromLTRB(20, 20, 20, 20),
+                    padding: const EdgeInsets.fromLTRB(20, 20, 20, 20),
                     child: Text('Menu',
                         style: GoogleFonts.ubuntu(
-                          textStyle: TextStyle(
+                          textStyle: const TextStyle(
                               color: Colors.white,
                               letterSpacing: .2,
                               fontSize: 19,
                               fontWeight: FontWeight.w800),
                         ))),
                 ListTile(
-                  leading: Icon(Icons.account_circle),
+                  leading: const Icon(Icons.account_circle),
                   title: Text('Nama',
                       style: GoogleFonts.ubuntu(
-                        textStyle: TextStyle(
+                        textStyle: const TextStyle(
                             color: Colors.white,
                             letterSpacing: .2,
                             fontSize: 18,
@@ -222,10 +224,10 @@ class _HomePageState extends State<HomePage> {
                   },
                 ),
                 ListTile(
-                  leading: Icon(Icons.badge),
+                  leading: const Icon(Icons.badge),
                   title: Text('NIM',
                       style: GoogleFonts.ubuntu(
-                        textStyle: TextStyle(
+                        textStyle: const TextStyle(
                             color: Colors.white,
                             letterSpacing: .2,
                             fontSize: 18,
@@ -242,24 +244,25 @@ class _HomePageState extends State<HomePage> {
                   mainAxisAlignment: MainAxisAlignment.end,
                   crossAxisAlignment: CrossAxisAlignment.end,
                   children: [
-                    Container(
-                      child: ListTile(
-                        leading: Icon(Icons.logout),
-                        title: Text('Logout',
-                            style: GoogleFonts.ubuntu(
-                              textStyle: TextStyle(
-                                  color: Colors.white,
-                                  letterSpacing: .2,
-                                  fontSize: 18,
-                                  fontWeight: FontWeight.w400),
-                            )),
-                        onTap: () {
-                          // Update the state of the app
-                          // ...
-                          // Then close the drawer
-                          Navigator.pop(context);
-                        },
-                      ),
+                    ListTile(
+                      leading: const Icon(Icons.logout),
+                      title: Text('Logout',
+                          style: GoogleFonts.ubuntu(
+                            textStyle: const TextStyle(
+                                color: Colors.white,
+                                letterSpacing: .2,
+                                fontSize: 18,
+                                fontWeight: FontWeight.w400),
+                          )),
+                      onTap: () async {
+                        SharedPreferences pref =
+                            await SharedPreferences.getInstance();
+                        await pref.clear();
+                        Navigator.of(context).pushAndRemoveUntil(
+                            MaterialPageRoute(
+                                builder: (context) => const LoginPage()),
+                            (route) => false);
+                      },
                     )
                   ],
                 ),
