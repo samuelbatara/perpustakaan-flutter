@@ -26,14 +26,12 @@ class _ListBookState extends State<ListBook> {
         backgroundColor: Colors.white,
         appBar: AppBar(
           leadingWidth: screenwidth * 0.5,
-          leading: Container(
-            child: Row(
-              children: [
-                Builder(builder: (context) {
-                  return const BackButton(color: Colors.blue);
-                }),
-              ],
-            ),
+          leading: Row(
+            children: [
+              Builder(builder: (context) {
+                return const BackButton(color: Colors.blue);
+              }),
+            ],
           ),
           elevation: 0,
           centerTitle: true,

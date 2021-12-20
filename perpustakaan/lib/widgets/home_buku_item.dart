@@ -13,8 +13,8 @@ class HomeBukuItem extends StatelessWidget {
     var screenheight = MediaQuery.of(context).size.height;
     return GestureDetector(
       onTap: () {
-        Navigator.of(context).push(MaterialPageRoute(
-                    builder: (context) => DetailBuku()));
+        Navigator.push(context,
+            MaterialPageRoute(builder: (context) => DetailBuku(buku: buku)));
       },
       child: Padding(
         padding:

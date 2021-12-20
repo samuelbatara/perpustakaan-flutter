@@ -43,8 +43,7 @@ class _LoadingPageState extends State<LoadingPage> {
         child: Scaffold(
       backgroundColor: Colors.white,
       body: Center(
-          child: Image.asset("lib/assets/artji.jpg",
-              height: 200, width: 200)),
+          child: Image.asset("lib/assets/artji.jpg", height: 200, width: 200)),
     ));
   }
 }
