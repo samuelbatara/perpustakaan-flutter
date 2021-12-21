@@ -2,7 +2,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-import 'home_page.dart';
+import 'login_page.dart';
 
 class LoadingPage extends StatefulWidget {
   const LoadingPage({Key? key}) : super(key: key);
@@ -29,9 +29,9 @@ class _LoadingPageState extends State<LoadingPage> {
       //push replacement ke halaman WelcomePage
       Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (_) {
         if (boolValue == false) {
-          return const HomePage();
+          return const LoginPage();
         } else {
-          return const HomePage();
+          return const LoginPage();
         }
       }));
     });
